@@ -80,6 +80,18 @@ body {
   gap: var(--gap);
 }
 
+#top_images > div:nth-child(1) {
+  background-image: url("../media/geo_images/san_francisco_normal_2.jpg");
+}
+
+#top_images > div:nth-child(2) {
+  background-image: url("../media/geo_images/salamanca_normal_1.jpg");
+}
+
+#top_images > div:nth-child(3) {
+  background-image: url("../media/geo_images/stockholm_normal_4.jpg");
+}
+
 #top_images > * {
   background-position: top;
   background-size: cover;
@@ -114,12 +126,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: var(--gap)
-}
-
-#others_filter {
-}
-
-#programmes {
 }
 
 .container, #top {
