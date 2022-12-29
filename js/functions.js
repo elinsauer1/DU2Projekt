@@ -209,6 +209,27 @@ function create_programme (programme) {
 
   */  
 
+    const programme_parent = document.querySelector("#programmes > ul");
+    const new_programme = document.createElement("div");
+    new_programme.classList.add("programme");
+    programme_parent.appendChild(new_programme);
+
+    
+    new_programme.innerHTML = `
+    <div>
+      <p>${programme.name}</p> 
+      <p>${UNIVERSITIES[programme.universityID].name}</p> 
+      <p>
+        ${CITIES[UNIVERSITIES[programme.universityID].cityID].name}, 
+        ${COUNTRIES[CITIES[UNIVERSITIES[programme.universityID].cityID].countryID].name}  
+      </p>
+      <p>${LEVELS[programme.levelID - 1].name}, ${SUBJECTS[programme.subjectID].name}, ${LANGUAGES[programme.languageID].name}</p>
+      <p></p>
+    </div>
+    <div class="bottom_programme">
+      <p>${CITIES[UNIVERSITIES[programme.universityID].cityID].name}, sun-index: ${CITIES[UNIVERSITIES[programme.universityID].cityID].sun} (${percenter(CITIES[UNIVERSITIES[programme.universityID].cityID].sun, 365)}%)</p>
+    </div>`
+  
 }
 
 
