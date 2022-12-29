@@ -251,6 +251,17 @@ function update_programmes () {
 
   */
 
+      document.querySelector("#programmes > ul").innerHTML = "";
+     
+      const no_programmes_text = document.querySelector(".container p");
+
+      no_programmes_text.classList.add("display_none");
+      if (read_filters().length === 0) {
+        no_programmes_text.classList.remove("display_none");
+      }
+
+      array_each(read_filters(), create_programme);
+      
 }
 
 
