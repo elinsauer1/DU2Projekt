@@ -109,7 +109,37 @@ function toggle_cities (event) {
 // ATTENTION: You need to write the specification of all three functions:
 //            create_countries_cities_filters, create_country and create_city
 function create_countries_cities_filters () {
+
+    /* 
+    NO ARGUMENT
+
+    SIDE-EFFECTS
+    This function creates two functions: create_country and create_city
+    Loop through the array COUNTRIES and for every iteration call the function create_country
+
+    NO RETURN VALUE
+    */
+
   function create_country (country) {
+
+    /* 
+    ARGUMENT
+    country: (element). One of the elements from the array "COUNTRIES"
+    No control is made of the argument
+
+    SIDE-EFFECTS
+    Creates a div-element with the classes "country" and "filter_container"
+    Gives the div-element an ID that is based on the objects key "id" 
+    Appends the div-element to the ul-element in the country_filter container
+    Sets a InnerHTML that includes a <h1> that contains the name of the current country and <ul> with the class "filter_list"
+
+    Create a variable "cities" that includes an array with all the cities that have the same countryID as the country.id
+
+    Loop through the new array "cities" and for every iteration call the function create_city
+
+    NO RETURN VALUE
+    */
+
     const dom = document.createElement("div");
     dom.classList.add("country");
     dom.classList.add("filter_container");
@@ -130,6 +160,20 @@ function create_countries_cities_filters () {
   }
   function create_city (city) {
 
+    
+    /*
+    ARGUMENT
+    city: (element). One of the elements from the array "cities"
+    No control is made of the argument
+
+    SIDE-EFFECTS
+    Create a variable "dom" that calls the create_filter_element with an argument that contains an object with the keys: parent, class and textContent.
+
+    Gives the new element an id that is the city.id
+
+    NO RETURN VALUE
+    */
+    
     const dom = create_filter_element({
       parent: document.querySelector(`#country_${city.countryID} > ul`),
       class: "selected",
@@ -192,43 +236,6 @@ array_each(LANGUAGES, language_filter);
 
 }
 
-/*
-function create_levels_filter () {
-  function create_level (level) {
-    const dom = create_filter_element({
-      parent: document.querySelector("#level_filter > ul"),
-      class: "selected",
-      textContent: level.name,
-    });
-    dom.dataset.id = level.id;
-  }
-  array_each(LEVELS, create_level);
-}
-// Create Subjects Filter
-function create_subjects_filter () {
-  function create_subject (subject) {
-    const dom = create_filter_element({
-      parent: document.querySelector("#subject_filter > ul"),
-      class: "selected",
-      textContent: subject.name,
-    });
-    dom.dataset.id = subject.id;
-  }
-  array_each(SUBJECTS, create_subject);
-}
-// Create Search Field
-function create_language_filter () {
-  function create_element (data) {
-    const dom = create_filter_element({
-      parent: document.querySelector("#language_filter > ul"),
-      class: "selected",
-      textContent: data.name,
-    });
-    dom.dataset.id = data.id;
-  }
-  array_each(LANGUAGES, create_element);
-}
-*/
 
 // G / VG (see details in specification)
 // CODE according to specifications
@@ -319,6 +326,24 @@ function update_programmes () {
 // Optional VG: Which parts of the function's code could be abstracted?
 //              Implement it
 function read_filters () {
+
+/*
+NO ARGUMENTS 
+
+SIDE EFFECTS
+For every city-filter-element that is selected call the function callback_add_cityID. The id of every selected city is pushed into an array stored in the variable "city_id_selected".
+
+For every element in the array city_id_selected check which universities that is located in the city with the current id and push the university (object) into an array stored in the variable "universities".
+
+For every element in the array "universities" call the function callback_add_programmes. For every element (object) in the array "PROGRAMMES" check which programmes who belongs to the university, with universityID, with the current id and push the programme (object) into an array stored in the variable "programmes".
+
+For every filter element that is selected in level filters, subject filters and language filters that is selected, push the ids of the object in the database that the filters refer to into an array that is for the specific filter. For every element in the array "programmes" check if the programme.levelID/subjectID/languageID is of the filter is present in the array for the specific filter. If so, push the programme (object) to the array "programmes".
+
+If the input-value is not empty see if the value is one of the programme names. If so, push the programme (object) to the array "programmes".
+
+RETURN VALUE
+Returns an array (programmes) which contains all the filtered/selected programmes.
+*/
   
   const city_selected_dom = document.querySelectorAll("#country_filter li.selected");
 
