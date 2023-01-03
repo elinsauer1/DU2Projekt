@@ -28,7 +28,7 @@
 :root {
   --gap: 2px;
   --border_radius: calc( 3 * var(--gap) );
-  --c_back: antiquewhite;
+  --c_back: rgb(254, 249, 242);
   --c_selected: navy;
   --padding: 10px;
 
