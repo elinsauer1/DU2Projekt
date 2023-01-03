@@ -1,6 +1,5 @@
+"use strict";
 
-// G
-// CODE According to specification
 function click_filter_element (event) {
 
   /*
@@ -20,14 +19,12 @@ function click_filter_element (event) {
   */
 
     event.currentTarget.classList.toggle("selected");
-    console.log(read_filters());
     update_programmes();
   
 }
 
 
-// G
-// CODE according to specification
+
 function create_filter_element (data) {
 
   /*
@@ -62,8 +59,7 @@ function create_filter_element (data) {
 }
 
 
-// VG
-// CODE according to specification
+
 function add_group_toggling (filter_container_dom) {
 
   /*
@@ -84,8 +80,6 @@ function add_group_toggling (filter_container_dom) {
 }
 
 
-// VG
-// CODE according to specifications
 function toggle_cities (event) {
 
   /*
@@ -105,40 +99,37 @@ function toggle_cities (event) {
 }
 
 
-// WRITE SPECIFICATION
-// ATTENTION: You need to write the specification of all three functions:
-//            create_countries_cities_filters, create_country and create_city
 function create_countries_cities_filters () {
 
-    /* 
+  /* 
     NO ARGUMENT
 
     SIDE-EFFECTS
-    This function creates two functions: create_country and create_city
-    Loop through the array COUNTRIES and for every iteration call the function create_country
+      This function creates two functions: create_country and create_city
+      Loop through the array COUNTRIES and for every iteration call the function create_country
 
     NO RETURN VALUE
-    */
+  */
 
   function create_country (country) {
 
-    /* 
+  /* 
     ARGUMENT
-    country: (element). One of the elements from the array "COUNTRIES"
-    No control is made of the argument
+      country: (element). One of the elements from the array "COUNTRIES"
+      No control is made of the argument
 
     SIDE-EFFECTS
-    Creates a div-element with the classes "country" and "filter_container"
-    Gives the div-element an ID that is based on the objects key "id" 
-    Appends the div-element to the ul-element in the country_filter container
-    Sets a InnerHTML that includes a <h1> that contains the name of the current country and <ul> with the class "filter_list"
+      Creates a div-element with the classes "country" and "filter_container"
+      Gives the div-element an ID that is based on the objects key "id" 
+      Appends the div-element to the ul-element in the country_filter container
+      Sets a InnerHTML that includes a <h1> that contains the name of the current country and <ul> with the class "filter_list"
 
-    Create a variable "cities" that includes an array with all the cities that have the same countryID as the country.id
+      Create a variable "cities" that includes an array with all the cities that have the same countryID as the country.id
 
-    Loop through the new array "cities" and for every iteration call the function create_city
+      Loop through the new array "cities" and for every iteration call the function create_city
 
     NO RETURN VALUE
-    */
+  */
 
     const dom = document.createElement("div");
     dom.classList.add("country");
@@ -161,18 +152,18 @@ function create_countries_cities_filters () {
   function create_city (city) {
 
     
-    /*
+  /*
     ARGUMENT
-    city: (element). One of the elements from the array "cities"
-    No control is made of the argument
+      city: (element). One of the elements from the array "cities"
+      No control is made of the argument
 
     SIDE-EFFECTS
-    Create a variable "dom" that calls the create_filter_element with an argument that contains an object with the keys: parent, class and textContent.
+      Create a variable "dom" that calls the create_filter_element with an argument that contains an object with the keys: parent, class and textContent.
 
-    Gives the new element an id that is the city.id
+      Gives the new element an id that is the city.id
 
     NO RETURN VALUE
-    */
+  */
     
     const dom = create_filter_element({
       parent: document.querySelector(`#country_${city.countryID} > ul`),
@@ -187,21 +178,15 @@ function create_countries_cities_filters () {
 }
 
 
-// G
-// ABSTRACT AND WRITE SPECIFICATION
-//    As you can see, all three functions below do basically the same thing.
-//    Abstract them to one function, and write the specification of that function.
-
 function create_filters () {
 
   /*
-  NO ARGUMENTS
-  
-  SIDE EFFECTS
-  For every element (object) in the arrays: LEVELS, SUBJECTS and LANGUAGES, this function calls create_filter_element
-  
-  NO RETURN VALUE
-  
+    NO ARGUMENTS
+    
+    SIDE EFFECTS
+      For every element (object) in the arrays: LEVELS, SUBJECTS and LANGUAGES, this function calls create_filter_element
+    
+    NO RETURN VALUE
   */
 
 function create_filter(object, parent) {
@@ -237,12 +222,9 @@ array_each(LANGUAGES, language_filter);
 }
 
 
-// G / VG (see details in specification)
-// CODE according to specifications
 function create_programme (programme) {
   
   /*
-
     ARGUMENT
       programme (object): One of the objects from PROGRAMMES
 
@@ -259,7 +241,6 @@ function create_programme (programme) {
       G:  The "see more" element is not required. And that information needs not be in place.
 
     NO RETURN VALUE
-
   */  
 
     const programme_parent = document.querySelector("#programmes > ul");
@@ -286,22 +267,18 @@ function create_programme (programme) {
 }
 
 
-// G
-// CODE according to the specification
 function update_programmes () {
 
   /*
-      NO ARGUMENTS
+    NO ARGUMENTS
 
-      SIDE EFFECTS
-        This function updates the programmes shown on the page according to
-        the current filter status (which filter elements are selected / unselected).
-        It uses the function read_filters to know which programmes need to be included.
+    SIDE EFFECTS
+      This function updates the programmes shown on the page according to the current filter status (which filter elements are selected / unselected).
+      It uses the function read_filters to know which programmes need to be included.
 
-        VG: The top images (header) need to be updated here
+      VG: The top images (header) need to be updated here
 
-      NO RETURN VALUE
-
+    NO RETURN VALUE
   */
 
       document.querySelector("#programmes > ul").innerHTML = "";
@@ -318,32 +295,25 @@ function update_programmes () {
 }
 
 
-// G
-// WRITE SPECIFICATION
-// You must understand how this function works. There will be questions about it
-// in the code review (kodredovisning)
-
-// Optional VG: Which parts of the function's code could be abstracted?
-//              Implement it
 function read_filters () {
 
-/*
-NO ARGUMENTS 
+  /*
+    NO ARGUMENTS 
 
-SIDE EFFECTS
-For every city-filter-element that is selected call the function callback_add_cityID. The id of every selected city is pushed into an array stored in the variable "city_id_selected".
+    SIDE EFFECTS
+      For every city-filter-element that is selected call the function callback_add_cityID. The id of every selected city is pushed into an array stored in the variable "city_id_selected".
 
-For every element in the array city_id_selected check which universities that is located in the city with the current id and push the university (object) into an array stored in the variable "universities".
+      For every element in the array city_id_selected check which universities that is located in the city with the current id and push the university (object) into an array stored in the variable "universities".
 
-For every element in the array "universities" call the function callback_add_programmes. For every element (object) in the array "PROGRAMMES" check which programmes who belongs to the university, with universityID, with the current id and push the programme (object) into an array stored in the variable "programmes".
+      For every element in the array "universities" call the function callback_add_programmes. For every element (object) in the array "PROGRAMMES" check which programmes who belongs to the university, with universityID, with the current id and push the programme (object) into an array stored in the variable "programmes".
 
-For every filter element that is selected in level filters, subject filters and language filters that is selected, push the ids of the object in the database that the filters refer to into an array that is for the specific filter. For every element in the array "programmes" check if the programme.levelID/subjectID/languageID is of the filter is present in the array for the specific filter. If so, push the programme (object) to the array "programmes".
+      For every filter element that is selected in level filters, subject filters and language filters that is selected, push the ids of the object in the database that the filters refer to into an array that is for the specific filter. For every element in the array "programmes" check if the programme.levelID/subjectID/languageID is of the filter is present in the array for the specific filter. If so, push the programme (object) to the array "programmes".
 
-If the input-value is not empty see if the value is one of the programme names. If so, push the programme (object) to the array "programmes".
+      If the input-value is not empty see if the value is one of the programme names. If so, push the programme (object) to the array "programmes".
 
-RETURN VALUE
-Returns an array (programmes) which contains all the filtered/selected programmes.
-*/
+    RETURN VALUE
+      Returns an array (programmes) which contains all the filtered/selected programmes.
+  */
   
   const city_selected_dom = document.querySelectorAll("#country_filter li.selected");
 
